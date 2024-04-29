@@ -21,18 +21,52 @@
             font-size: 16px;
             cursor: pointer;
         }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 300px;
+        }
+
+        #nameList {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            text-align: left;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Hello New Classmates!</h1>
+        <h1>Welcome New Classmates!</h1>
+        <p>Please enter your name:</p>
+        <input type="text" id="nameInput" placeholder="Your Name">
         <button id="welcomeButton" onclick="welcome()">Click Me!</button>
+       
+        <div id="nameList">
+            <strong>Colaborators:</strong>
+            <ul id="classmateNames"></ul>
+        </div>
     </div>
     <script>
         function welcome() {
-            // Change the text of the button when clicked
-            document.getElementById("welcomeButton").textContent = "Welcome";
+            var name = document.getElementById("nameInput").value.trim();
+            if (name !== "") {
+                // Append the entered name to the list of classmates
+                var listItem = document.createElement("li");
+                listItem.textContent = name;
+                document.getElementById("classmateNames").appendChild(listItem);
+
+                // Clear the input field
+                document.getElementById("nameInput").value = "";
+
+                // Change the text of the button when clicked
+                document.getElementById("welcomeButton").textContent = "Welcome";
+            }
         }
     </script>
 </body>
